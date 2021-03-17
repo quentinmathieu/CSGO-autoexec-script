@@ -19,8 +19,8 @@ Il vous faudra 2 choses :
 ## Les 2 scripts
 
 Après avoir téléchargé le github, vous aller parcourir un dossier avec 3 fichiers :
-  * ### copy_from_730.bat qui vous servira à aller chercher votre config actuelle de csgo ainsi que vos paramètres vidéo
-  * ### setup.bat qui vous servira à mettre à jour vos paramètres ainsi que votre autoexec
+  * copy_from_730.bat qui vous servira à aller chercher votre config actuelle de csgo ainsi que vos paramètres vidéo
+  * setup.bat qui vous servira à mettre à jour vos paramètres ainsi que votre autoexec
   * Un fichier autoexec avec des paramètres de base, vous êtes évidemment encoragé à le custumizer (et le nom n'a pas d'importance)
 
 
