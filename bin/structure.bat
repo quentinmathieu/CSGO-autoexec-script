@@ -1,4 +1,5 @@
 set csgoPath=^"%csgoPath%^"
+set userID=%userID:~5,9%
 xcopy /y /r %name% %csgoPath%\csgo\cfg\%name%*
 attrib +r %csgoPath%\csgo\cfg\%name%*
 xcopy /q /y video.txt %csgoPath%\video.txt* >NUL
