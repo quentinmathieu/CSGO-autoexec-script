@@ -42,40 +42,44 @@ for /f "tokens=*" %%A in (%launchOptions%) do set launchOptions="%%A"
 set launchOptions=%launchOptions:~2,-2%
 cd %currentDir%
 echo set launchOptions=%launchOptions%> bin\launchOptions.bat
-call bin\launchOptions.bat >nul
-if not "%launchOptions%"=="" set /p OdlYesOrNot=Your actual launch options are "%ESC%[93m%launchOptions%%ESC%[0m" do you want to change it[y/n]?
+call bin\launchOptions.bat
+if not "%launchOptions%"=="" set /p oldYesOrNot=Your actual launch options are "%ESC%[93m%launchOptions%%ESC%[0m" do you want to change it[y/n]?
 if "%launchOptions%"=="" set /p newYesOrNot=Your launch options will be "%ESC%[93m+exec %name%%ESC%[0m", do you want to add more options(to increase fps, set tickrate to 128, etc...)[y/n]?
 
-if "%OdlYesOrNot%"=="n" goto noUpdate
-if "%newYesOrNot%"=="n" set replace="LaunchOptions"		"+exec %name%" && goto update
+if "%oldYesOrNot%"=="y" CALL bin\moreOptions.bat
+if "%oldYesOrNot%"=="n" goto noUpdate
 
-
-if "%OdlYesOrNot%"=="y" CALL bin\moreOptions.bat
 if "%newYesOrNot%"=="y" CALL bin\moreOptions.bat
+if "%newYesOrNot%"=="n" set replace="LaunchOptions"		"+exec %name%"
 
-
-:update
+:afterMoreOptions
+if "%launchOptions%"=="%replace%" goto noUpdate
 cd %csgoPath%
 cd %configPath%
+
+
+echo %configPath%
 if "%launchOptions%"=="" set search="LaunchOptions"		""
 if not "%launchOptions%"=="" set search=%launchOptions%
 set textfile=localconfig.vdf
 set newfile=tmp.vdf
+set status=0
+echo %search%
 echo %replace%
-::if not "%search%"=="%replace%" goto noUpdate >nul
-pause
 (for /f "delims=" %%i in (%textfile%) do (
     set "line=%%i"
     setlocal enabledelayedexpansion
-    set "line=!line:%search%=%replace%!"
+    if "%status%"=="0" set "line=!line:%search%=%replace%!"
     echo(!line!
     endlocal
 ))>%newfile%
 )
+echo %status%
 del %textfile% >nul
 rename %newfile%  %textfile%
 
 :noUpdate
+pause
 cd %currentDir%
 type bin\datas.bat bin\structure.bat > bin\run.bat
 

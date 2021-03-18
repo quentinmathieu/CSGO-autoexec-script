@@ -4,6 +4,7 @@ call bin\datas.bat
 set CurrentRefreshRate=%CurrentRefreshRate:~0,-1%
 set NumberOfLogicalProcessors=%NumberOfLogicalProcessors:~0,-1%
 set recommanded=-console -novid -tickrate 128 -high -refresh%CurrentRefreshRate% -threads%NumberOfLogicalProcessors% -d3d9ex -nojoy +fps_max 0 +exec %name%
+echo There are the recommanded options for your pc :
 echo "%ESC%[93m%recommanded%%ESC%[0m"
 echo.
 echo %ESC%[93m-console%ESC%[0m    "Starts the game with the developer console enabled"
@@ -17,6 +18,27 @@ echo %ESC%[93m-nojoy%ESC%[0m      "This launch option makes the game drop all jo
 echo.
 echo %ESC%[93m-fps_max 0%ESC%[0m  "It removes the FPS cap that is enabled by default. Most players will have turned this off, but we have included this as it will offer a benefit to anyone who hasn't."
 echo.
-set /p yesOrNot=Do you want to use this recommanded lauch options[y/n]?
-if "%oldYesOrNot%"=="y" set replace=%recommanded%
-if "%newYesOrNot%"=="y" set replace="LaunchOptions"		"%recommanded%"
+:recommandedOptions
+set /p recommandYesOrNot=Do you want to use this recommanded lauch options[y/n]?
+if "%recommandYesOrNot%"=="y" goto recommandYes
+if "%recommandYesOrNot%"=="n" goto askCustom
+if not "%recommandYesOrNot%"=="y" if not "%recommandYesOrNot%"=="n" echo.& echo.%ESC%[41mBad input, retry%ESC%[0m & goto :recommandedOptions
+
+:recommandYes
+if "%oldYesOrNot%"=="y" echo.& echo.%ESC%[42mYour launch options haven been set to :%ESC%[0m & echo.%ESC%[93m"%recommanded%"%ESC%[0m& set replace=%recommanded%
+if "%newYesOrNot%"=="y" echo.& echo.%ESC%[42mYour launch options haven been set to :%ESC%[0m & echo.%ESC%[93m"%recommanded%"%ESC%[0m& set replace="LaunchOptions"		"%recommanded%"
+goto end
+
+:askCustom
+set /p customYesOrNot=Do you want to input custom lauch options[y/n]?
+if "%customYesOrNot%"=="y" goto cumstomYes
+if "%customYesOrNot%"=="n" goto customNo
+if not "%customYesOrNot%"=="y" if not "%recommandYesOrNot%"=="n" echo.& echo.%ESC%[41mBad input, retry%ESC%[0m& goto :recommandedOptions
+
+:cumstomYes
+
+:customNo
+if "%oldYesOrNot%"=="y" echo.& echo.%ESC%[43mLaunch options haven't been update%ESC%[0m & set replace=%launchOptions%& goto end
+if "%newYesOrNot%"=="y" echo.& echo.%ESC%[42mYour launch options haven been set to %ESC%[93m"+exec %name%"%ESC%[0m& set replace="LaunchOptions"		"+exec %name%"%ESC%[0m & goto end
+
+:end
