@@ -10,16 +10,16 @@ if not "%yesOrNot%"=="y" pause
 if not "%yesOrNot%"=="y" exit
 CALL bin\datas.bat
 if not "%csgoPath%"=="" echo %ESC%[93m%csgoPath%%ESC%[0m
-if not "%csgoPath%"=="" set /p yesOrNot=Is this path the correct csgo path[y/n]?
+if not "%csgoPath%"=="" set /p yesOrNot=Is this the correct csgo path[y/n]?
 echo.
 if not "%yesOrNot%"=="y" set /p csgoPath=Enter %ESC%[7myour new csgo path%ESC%[0m :
 if not "%userID%"=="" echo %ESC%[93m%userID%%ESC%[0m
-if not "%userID%"=="" set /p yesOrNot=Is this UserID3 correct[y/n]?
+if not "%userID%"=="" set /p yesOrNot=Is this the correct steamID3[y/n]?
 echo.
 if not "%yesOrNot%"=="y" set /p userID=Enter %ESC%[7myour new steamID3%ESC%[0m :
 
 if "%csgoPath%"=="" set /p csgoPath=Enter %ESC%[7myour csgo path%ESC%[0m :
-if "%userID%"=="" set /p userID=Enter %ESC%[7myour steamID3%ESC%[0m :
+if "%userID%"=="" set /p userID=Enter %ESC%[7myour SteamID3%ESC%[0m :
 
 CALL bin\build_datas.bat
 
@@ -33,10 +33,10 @@ if "%yesOrNot%"=="y" cd %csgoPath%
 
 if "%yesOrNot%"=="y" xcopy /y ..\..\..\userdata\%userID%\730\local\cfg\video.txt %currentDir%\video.txt* >NUL
 if not "%errorlevel%"=="0" echo %ESC%[93mSteam\userdata\%userID%\730\local\cfg\video.txt.cfg%ESC%[0m %ESC%[101mwas not found.%ESC%[0m
-if "%errorlevel%"=="0" echo %ESC%[93mSteam\userdata\%userID%\730\local\cfg\video.txt%ESC%[0m %ESC%[42mwere copied without error.%ESC%[0m
+if "%errorlevel%"=="0" echo %ESC%[93mSteam\userdata\%userID%\730\local\cfg\video.txt%ESC%[0m %ESC%[42mwas copied without error.%ESC%[0m
 if "%yesOrNot%"=="y" xcopy /y ..\..\..\userdata\%userID%\730\local\cfg\config.cfg %currentDir%\config.cfg* >NUL
 if not "%errorlevel%"=="0" echo %ESC%[93mSteam\userdata\%userID%\730\local\cfg\config.cfg%ESC%[0m %ESC%[101mwas not found.%ESC%[0m
-if "%errorlevel%"=="0" echo %ESC%[93mSteam\userdata\%userID%\730\local\cfg\config.cfg%ESC%[0m %ESC%[42mwere copied without error.%ESC%[0m
+if "%errorlevel%"=="0" echo %ESC%[93mSteam\userdata\%userID%\730\local\cfg\config.cfg%ESC%[0m %ESC%[42mwas copied without error.%ESC%[0m
 
 if not "%yesOrNot%"=="y" echo %ESC%[101mAbord...%ESC%[0m
 

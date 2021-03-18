@@ -2,7 +2,8 @@
 set csgoPath=C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive
 set userID=[U:1:109876775]
 set name=autoexec.cfg
-set NumberOfLogicalProcessors=12 
+set NumberOfLogicalProcessors=12 
+set CurrentRefreshRate=144 
 set csgoPath=^"%csgoPath%^"
 set userID=%userID:~5,9%
 xcopy /y /r %name% %csgoPath%\csgo\cfg\%name%*
