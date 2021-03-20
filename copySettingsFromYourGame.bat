@@ -11,14 +11,22 @@ if not "%yesOrNot%"=="y" exit
 CALL bin\datas.bat
 if not "%csgoPath%"=="" echo %ESC%[93m%csgoPath%%ESC%[0m
 if not "%csgoPath%"=="" set /p yesOrNot=Is this the correct csgo path[y/n]?
-echo.
+if not "%csgoPath%"=="" echo.
 if not "%yesOrNot%"=="y" set /p csgoPath=Enter %ESC%[7myour new csgo path%ESC%[0m :
 if not "%userID%"=="" echo %ESC%[93m%userID%%ESC%[0m
 if not "%userID%"=="" set /p yesOrNot=Is this the correct steamID3[y/n]?
-echo.
+if not "%userID%"=="" echo.
 if not "%yesOrNot%"=="y" set /p userID=Enter %ESC%[7myour new steamID3%ESC%[0m :
 
+if "%csgoPath%"=="" echo Your csgo path
+if "%csgoPath%"=="" echo.
+if "%csgoPath%"=="" echo To find it : %ESC%[93m launch Steam / game's library / right click on cs:go / properties / local files / browse %ESC%[0m
+if "%csgoPath%"=="" echo Your csgo path looks like C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive
 if "%csgoPath%"=="" set /p csgoPath=Enter %ESC%[7myour csgo path%ESC%[0m :
+if "%userID%"=="" echo.
+if "%userID%"=="" echo Enter your steamID3
+if "%userID%"=="" echo You can find it on https://steamidfinder.com
+if "%userID%"=="" echo Your SteamID3 looks like [U:0:7355608]
 if "%userID%"=="" set /p userID=Enter %ESC%[7myour SteamID3%ESC%[0m :
 
 CALL bin\build_datas.bat

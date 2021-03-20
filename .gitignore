@@ -3,5 +3,6 @@ id_key
 id_key.pub
 video.txt
 config.cfg
-
+datas.bat
 test.bat
+launchOptions.bat
